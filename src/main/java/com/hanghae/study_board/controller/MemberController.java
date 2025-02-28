@@ -1,8 +1,10 @@
 package com.hanghae.study_board.controller;
 
 import com.hanghae.study_board.dto.LoginRequest;
+import com.hanghae.study_board.dto.LoginResponse;
 import com.hanghae.study_board.dto.RegisterRequest;
 import com.hanghae.study_board.service.MemberService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,9 +18,8 @@ public class MemberController {
     MemberService memberService;
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest loginRequest){
-        boolean validated = memberService.validateMember(loginRequest);
-        return validated ? "success" : "fail";
+    public LoginResponse login(@RequestBody LoginRequest loginRequest){
+        return memberService.validateMember(loginRequest);
     }
 
     //회원가입
